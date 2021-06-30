@@ -2,7 +2,6 @@ import { useState } from 'react';
 
 
 const App = () => {
-  const [count, setCount] =useState(0);
   const [basket,setBasket] =useState({margherita:0,veggie:0,pepperoni:0});
 
   const pizzas = [
@@ -27,8 +26,6 @@ const App = () => {
   const increaseBasket = (chosenPizza)=>{
     setBasket((currentBasket)=>{
       const newBasket = {...currentBasket}
-      console.log(newBasket,"newBasket")
-      console.log(chosenPizza,"chosenPizza")
       newBasket[chosenPizza]++
       return newBasket
     })
@@ -37,8 +34,6 @@ const App = () => {
   const decreaseBasket = (chosenPizza)=>{
     setBasket((currentBasket)=>{
       const newBasket = {...currentBasket}
-      console.log(newBasket,"newBasket")
-      console.log(chosenPizza,"chosenPizza")
       newBasket[chosenPizza]--
       return newBasket
     })
@@ -46,33 +41,63 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>NC Pizza Parlour</h1>
-      <ul className="menu-list">
-        {pizzas.map((pizza) => {
-          return (
-            <li key={pizza.name} className="menu-item">
-              <img
-                src={pizza.imageUrl}
-                alt={pizza.name}
-                className="menu-img"
-              ></img>
-              <p>{pizza.name}</p>
-            </li>
-          );
-        })}
-      </ul>
-      <section>
+      <Header />
+      <Menu pizzas={pizzas} />
+      <Likes />
+      <Basket basket={basket} increaseBasket={increaseBasket} decreaseBasket={decreaseBasket}/>
+      <Total basket={basket} />
+    </div>
+  );
+};
+
+
+const Header = ()=>{
+  return  <h1>NC Pizza Parlour</h1>
+  };
+
+
+const Menu = (props)=>{
+  console.log("props" , props)
+  return (
+    <ul className="menu-list">
+    {props.pizzas.map((pizza) => {
+      return (
+        <li key={pizza.name} className="menu-item">
+          <img
+            src={pizza.imageUrl}
+            alt={pizza.name}
+            className="menu-img"
+          ></img>
+          <p>{pizza.name}</p>
+        </li>
+      );
+    })}
+  </ul>
+  )
+};
+
+
+const Likes = ()=>{
+  const [count, setCount] =useState(0);
+
+  return (
+<section>
       <h2>count: {count}</h2>
       <button onClick={()=> 
       setCount((currCount)=>{
         return currCount + 1;
       })}
       >
-      Like
+      Like 👍
       </button>
       </section>
+  )
+};
 
-      <section>
+
+const Basket = ( {basket, increaseBasket, decreaseBasket})=>{
+  return (
+<section>
         <h2>Choose you pizza!</h2>
         <p>Margherita {basket.margherita}</p>
         <button onClick={()=> increaseBasket('margherita')}
@@ -101,14 +126,19 @@ const App = () => {
         >
           cancel</button>
       </section>
-
-      <section>
-        <h2>total order : {basket.margherita + basket.veggie + basket.pepperoni}</h2>
-        
-      </section>
-    </div>
-  );
+  )
 };
+
+
+const Total = ({basket})=>{
+  return (
+    <section>
+    <h2>total order : {basket.margherita + basket.veggie + basket.pepperoni}</h2>
+    </section>
+  )
+};
+
+
 
 export default App;
 

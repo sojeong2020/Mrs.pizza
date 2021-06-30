@@ -10,6 +10,7 @@ body {
   color: #c7293c;
   font-weight: 600;
   font-size: 1.1rem;
+  background-color: #dbc1c4;
 }
 
 button {
@@ -45,4 +46,5 @@ button:disabled {
   width: 10em;
   height: 10em;
   object-fit: cover;
+  border-radius: 100px;
 }
