@@ -18,6 +18,11 @@ button {
   padding: 0.4em 1em;
   border-radius: 10px;
   border: none;
+  margin-left: 20px;
+}
+
+.cancel {
+  background: #c7293c;
 }
 
 button:disabled {
