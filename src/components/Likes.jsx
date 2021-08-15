@@ -1,4 +1,4 @@
-import React from 'react';
+/* import React from 'react';
 import {useState} from 'react';
 
 const Likes = () => {
@@ -23,4 +23,4 @@ const [count, setCount] =useState(0);
     );
 };
 
-export default Likes;
+export default Likes; */
