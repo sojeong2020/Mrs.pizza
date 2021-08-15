@@ -2,6 +2,8 @@ import React from 'react';
 
 const Menu = (props) => {
     console.log("props" , props)
+
+    
     return (
     <div>
     <ul className="menu-list">

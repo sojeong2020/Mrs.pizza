@@ -4,6 +4,7 @@ import React from 'react';
 
 const Basket = ({basket,setBasket}) => {
     console.log(basket)
+
     const increaseBasket = (chosenPizza)=>{
         setBasket((currentBasket)=>{
           const newBasket = {...currentBasket}
