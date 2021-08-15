@@ -1,10 +1,15 @@
 import { useState } from 'react';
+import Header from './components/Header';
+import Menu from './components/Menu';
+import Likes from './components/Likes';
+import Basket from './components/Basket';
+import Total from './components/Total';
 
 
 const App = () => {
   const [basket,setBasket] =useState({margherita:0,veggie:0,pepperoni:0});
-
-  const pizzas = [
+ 
+   const allPizza = [
     {
       name: 'Margherita',
       imageUrl:
@@ -20,126 +25,22 @@ const App = () => {
       imageUrl:
         'https://cdn.pixabay.com/photo/2020/02/04/12/14/pepperoni-4818019_1280.jpg',
     },
-  ];
+  ]; 
 
 
-  const increaseBasket = (chosenPizza)=>{
-    setBasket((currentBasket)=>{
-      const newBasket = {...currentBasket}
-      newBasket[chosenPizza]++
-      return newBasket
-    })
-  }
-
-  const decreaseBasket = (chosenPizza)=>{
-    setBasket((currentBasket)=>{
-      const newBasket = {...currentBasket}
-      newBasket[chosenPizza]--
-      return newBasket
-    })
-  }
-
-  return (
+ return (
     <div className="App">
       <Header />
-      <Menu pizzas={pizzas} />
+      <Menu allPizza={allPizza} />
       <Likes />
-      <Basket basket={basket} increaseBasket={increaseBasket} decreaseBasket={decreaseBasket}/>
+      <Basket  basket={basket} setBasket={setBasket}/>
       <Total basket={basket} />
     </div>
   );
 };
 
 
-const Header = ()=>{
-  return  <h1>NC Pizza Parlour</h1>
-  };
-
-
-const Menu = (props)=>{
-  console.log("props" , props)
-  return (
-    <ul className="menu-list">
-    {props.pizzas.map((pizza) => {
-      return (
-        <li key={pizza.name} className="menu-item">
-          <img
-            src={pizza.imageUrl}
-            alt={pizza.name}
-            className="menu-img"
-          ></img>
-          <p>{pizza.name}</p>
-        </li>
-      );
-    })}
-  </ul>
-  )
-};
-
-
-const Likes = ()=>{
-  const [count, setCount] =useState(0);
-
-  return (
-<section>
-      <h2>count: {count}</h2>
-      <button onClick={()=> 
-      setCount((currCount)=>{
-        return currCount + 1;
-      })}
-      >
-      Like 👍
-      </button>
-      </section>
-  )
-};
-
-
-const Basket = ( {basket, increaseBasket, decreaseBasket})=>{
-  return (
-<section>
-        <h2>Choose you pizza!</h2>
-        <p>Margherita {basket.margherita}</p>
-        <button onClick={()=> increaseBasket('margherita')}
-        >
-          order
-          </button>
-          <button className="cancel" onClick={()=> decreaseBasket('margherita')}
-        >
-          cancel
-          </button>
-
-        <p>Veggie {basket.veggie}</p>
-        <button onClick={()=> increaseBasket('veggie')}
-        >
-          order
-          </button>
-          <button className="cancel" onClick={()=> decreaseBasket('veggie')}
-        >
-          cancel
-          </button>
-        <p>Pepperoni {basket.pepperoni}</p>
-        <button onClick={()=> increaseBasket('pepperoni')}
-        >
-          order</button>
-          <button className="cancel" onClick={()=> decreaseBasket('pepperoni')}
-        >
-          cancel</button>
-      </section>
-  )
-};
-
-
-const Total = ({basket})=>{
-  return (
-    <section>
-    <h2>total order : {basket.margherita + basket.veggie + basket.pepperoni}</h2>
-    </section>
-  )
-};
-
-
 
 export default App;
 
-// Create your new Components here
+

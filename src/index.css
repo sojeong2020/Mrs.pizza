@@ -4,6 +4,12 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
 }
+h1 {
+  color:#0d5a0d;
+}
+h2 {
+  color:rgb(158, 132, 17);
+}
 
 .App {
   text-align: center;
